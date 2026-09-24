@@ -23,14 +23,14 @@ Principles that serve that outcome:
 Do not edit anything in this phase. Use it to build an accurate picture, because a proposal built on a misread of the repo wastes the user's review time.
 
 1. **Establish a baseline first.** Run `git status` (stop and ask if the tree is dirty — refactoring on top of uncommitted work makes regressions impossible to attribute). Then find and run the existing test suite, lint, and build. Record the results verbatim. If tests already fail, note which ones; you'll need to know that the failures predate your changes.
-2. **Map the structure.** Generate the directory tree (ignore `node_modules`, `.git`, `target`, `dist`, `__pycache__`, virtualenvs, vendored dependencies). For each directory ask: does this depth exist because the stack requires it, or because someone added a layer? Flag single-file directories, `index`/`mod`/`__init__` files that only re-export, and directories named after a pattern rather than a domain (`utils`, `helpers`, `common`, `shared`, `core`, `lib`, `misc`).
+2. **Map the structure.** Generate the directory tree (ignore `node_modules`, `.git`, `target`, `dist`, `__pycache__`, virtualenvs, vendored dependencies, generated code such as protobuf/OpenAPI output — duplication and "dead" code there is expected). In a monorepo or a repo too large to audit in one pass, list the packages and ask which to start with instead of auditing everything shallowly. For each directory ask: does this depth exist because the stack requires it, or because someone added a layer? Flag single-file directories, `index`/`mod`/`__init__` files that only re-export, and directories named after a pattern rather than a domain (`utils`, `helpers`, `common`, `shared`, `core`, `lib`, `misc`).
 3. **Find duplicated logic.** Grep for repeated function names, near-identical bodies, multiple HTTP/database clients, parallel type or schema definitions, hand-rolled versions of standard-library functions, and constants defined in more than one place. Read the candidates — names that match are often different functions, and functions that look different are often the same one.
 4. **Identify the toolchain.** Locate the package manager, test runner, linter/formatter, type checker, and build tool from config files (`package.json`, `pyproject.toml`, `Cargo.toml`, `go.mod`, `pom.xml`, `build.gradle`, `*.csproj`, `Makefile`, `justfile`, CI config). The CI config is usually the most honest source for the commands that actually matter.
 5. **Find dead wood — carefully.** Look for unreferenced exports, orphaned config, tests for code that no longer exists, and docs describing structures that don't exist. Before calling anything dead, check for dynamic references: string-based imports, reflection, plugin registries, entry points declared in config, CLI commands, and anything loaded by name from an environment variable. Also check whether the repo is a library — its public API may have external consumers you can't see.
 
 ## Phase 2: Proposal (stop for approval)
 
-Write the proposal using the template below, then **end your turn and wait**. Do not create a branch, move a file, or "just start on the safe ones." The user needs to be able to veto individual items, and a partial refactor is worse than none.
+Write the proposal using the template below, then **end your turn and wait**. Do not create a branch, move a file, or "just start on the safe ones." The user needs to be able to veto individual items, and a partial refactor the user didn't sign off on is worse than none.
 
 Keep the proposal honest about risk. Each item gets one of: **safe** (mechanical move/merge, fully covered by tests), **moderate** (touches logic or is under-tested), or **risky** (public API, dynamic references, or no tests). If more than a third of items are risky, say so up front and suggest doing the safe tier first.
 
@@ -60,7 +60,7 @@ When there's a judgment call, present the option and your recommendation rather 
 
 | Concept | Currently in | Canonical location | Rationale | Risk |
 |---|---|---|---|---|
-| Date formatting | `utils/dates.py`, `helpers/time.py` | `core/dates.py` | Same three functions; `time.py` adds one tz helper, which moves too | safe |
+| Date formatting | `utils/dates.py`, `helpers/time.py` | `dates.py` | Same three functions; `time.py` adds one tz helper, which moves too | safe |
 
 ## 3. Action plan
 
