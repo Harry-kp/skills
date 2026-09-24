@@ -28,7 +28,7 @@ curl -fsSL https://raw.githubusercontent.com/Harry-kp/skills/main/install.sh | s
 
 ```
 /plugin marketplace add Harry-kp/skills
-/plugin install skills@harry-kp-skills
+/plugin install harry-kp@harry-kp-skills
 ```
 
 Re-run any of these to update.
@@ -42,8 +42,8 @@ Re-run any of these to update.
 ## Adding a skill
 
 ```
-skills/<kebab-case-name>/
-  SKILL.md        # frontmatter: name (matches folder), description (what + when to use)
+skills/harry-kp-<kebab-case-name>/
+  SKILL.md        # frontmatter: name (matches folder, always `harry-kp-` prefixed), description (what + when to use)
   ...             # optional scripts/, references/, assets/
 ```
 
