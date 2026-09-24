@@ -37,7 +37,7 @@ Re-run any of these to update.
 
 | Skill | What it does |
 |-------|--------------|
-| _coming soon_ | |
+| [`harry-kp-agent-ready-repo`](skills/harry-kp-agent-ready-repo/SKILL.md) | Audit and simplify any repo (flatten, dedupe to one source of truth, delete dead code) with an approval gate, then write a verified CLAUDE.md / AGENTS.md so agents can work in it autonomously |
 
 ## Adding a skill
 
