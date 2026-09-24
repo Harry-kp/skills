@@ -24,7 +24,14 @@ Installs every skill globally into `~/.agents/skills` and into each agent it fin
 curl -fsSL https://raw.githubusercontent.com/Harry-kp/skills/main/install.sh | sh -s -- skill-a skill-b
 ```
 
-Re-run either command to update.
+**Claude Code plugin:**
+
+```
+/plugin marketplace add Harry-kp/skills
+/plugin install skills@harry-kp-skills
+```
+
+Re-run any of these to update.
 
 ## Skills
 

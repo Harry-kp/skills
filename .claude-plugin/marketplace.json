@@ -1,0 +1,13 @@
+{
+  "name": "harry-kp-skills",
+  "description": "General-purpose agent skills usable in any repo",
+  "owner": { "name": "Harshit Chaudhary", "url": "https://github.com/Harry-kp" },
+  "plugins": [
+    {
+      "name": "skills",
+      "description": "General-purpose agent skills by Harry-kp",
+      "source": "./",
+      "strict": false
+    }
+  ]
+}
