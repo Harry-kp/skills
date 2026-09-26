@@ -38,6 +38,7 @@ Re-run any of these to update.
 | Skill | What it does |
 |-------|--------------|
 | [`harry-kp-agent-ready-repo`](skills/harry-kp-agent-ready-repo/SKILL.md) | Audit and simplify any repo (flatten, dedupe to one source of truth, delete dead code) with an approval gate, then write a verified CLAUDE.md / AGENTS.md so agents can work in it autonomously |
+| [`harry-kp-benchmark-repo-presentation`](skills/harry-kp-benchmark-repo-presentation/SKILL.md) | Compare your repo's README, docs, install story and community files against a project you admire; returns a short borrow list filtered by upkeep cost for a small team, plus what to skip |
 
 ## Adding a skill
 
