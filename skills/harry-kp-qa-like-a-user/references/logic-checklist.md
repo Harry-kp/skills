@@ -6,7 +6,7 @@ A screen can render perfectly and still be wrong. For every workflow, don't stop
 
 - Totals, subtotals, averages, percentages: recompute from the line items shown. Off by a rounding step, a missing item, or a double-counted item?
 - Money: rounding (per line vs on total), currency symbol and decimals, tax/fee order, negative balances, refunds/credits applied once.
-- Units: kWh vs Wh, bytes vs KiB, ms vs s, per-day vs per-month; labels match the maths.
+- Units: kg vs lb, bytes vs KiB, ms vs s, per-day vs per-month; labels match the maths.
 - Derived values ("days left", "projected bill", "usage vs last month"): recompute from the inputs. Check the edge cases — zero usage, first day of the period, negative or missing data.
 - Charts: bars/lines match the table beneath them; axis scale and legend correct; the latest point isn't silently dropped.
 - Counters and badges: "12 unread" matches the list; updates after an action.
@@ -44,10 +44,10 @@ A screen can render perfectly and still be wrong. For every workflow, don't stop
 
 ```
 BUG-012 | P1 | logic | OPEN
-where: Dashboard > Days left
-expected: balance ₹540 / avg ₹61.2 per day (last 7 days) = 8.8 → "8 days"
-actual: "14 days" — uses 30-day average including a 9-day outage with zero usage
-evidence: qa/screens/021-dashboard.png, qa/screens/api-007.txt (raw usage)
+where: Cart > Order summary
+expected: items 2×19.99 + 1×5.00 = 44.98; 10% off = 40.48; + 5.00 shipping = 45.48
+actual: 45.98 — discount applied before the second item was added, never recalculated
+evidence: qa/screens/021-cart.png, qa/screens/api-007.txt (raw cart response)
 ```
 
 Always show the expected calculation — it's what makes a logic bug fixable and settles "is this actually wrong?".

@@ -122,7 +122,7 @@ Only if the user asked for fixes ("find and fix", "QA and fix"). If they asked t
 Fix in order P0 → P1 → P2 → P3; at equal severity, bugs → UX/UI → missing features, unless a missing feature is blocking a P0/P1 workflow. For each fix:
 1. Find the root cause in code (now you may read source).
 2. Fix the cause, not the symptom. If the same class of bug appears elsewhere, grep for siblings and fix them too.
-3. **Re-drive the exact repro** from the finding, from clean state, and capture the after-screenshot. A fix without a re-driven repro is a guess.
+3. **Re-drive the exact repro** from the finding, from clean state, and capture the after-screenshot. A fix without a re-driven repro is a guess. After a batch of fixes, re-run the core workflows from Step 4 — fixes break neighbours.
 4. Add or update an automated test at the level the project already uses (e2e if they have Playwright, otherwise integration/unit). Don't introduce a new test framework unless there is none.
 5. Mark the finding `FIXED (commit abc123)` in `qa/findings.md`.
 
@@ -143,6 +143,7 @@ Use `assets/report-template.md`. Fill every section. The report is for someone w
 - **Time-box exploration** — a typical app is 2–4 hours of driving. If it's bigger, report coverage percentage and ask which areas to prioritize.
 - **Keep asking "would a real person understand this?"** Technical correctness is not the bar. Obvious is the bar.
 - **Log as you go.** `qa/findings.md` after every finding; screenshots after every action.
+- **Redact before sharing.** Credentials, tokens, and real personal data never go into findings, logs, or the report; blur or crop them out of any screenshot that leaves the machine.
 
 ## Files in this skill
 

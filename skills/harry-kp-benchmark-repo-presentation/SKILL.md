@@ -14,7 +14,7 @@ The output is a short, ranked borrow list. Every item must survive an impact-vs-
 Confirm three things before cloning anything:
 
 1. **Which repo is the user's** (and that it is theirs — the recommendations are about their brand, so tone matters).
-2. **Which repo is the reference.** If the user names it loosely ("the netbird github"), resolve it to an exact `owner/name`.
+2. **Which repo is the reference.** If the user names it loosely ("the vite github"), resolve it to an exact `owner/name`.
 3. **Team size / maintenance appetite.** If the user hasn't said, assume small or solo and say you're assuming it. This assumption drives the whole filter.
 
 If you have memory or earlier context about the user's project, use it first — you'll often already know what it is, what it does, and what they've already tried.
@@ -83,7 +83,7 @@ Keep it conversational and concrete. Point at exact files (`.github/ISSUE_TEMPLA
 - Issue-template `config.yml` with contact links to troubleshooting docs, security policy, and discussions — routes noise away from the issue tracker.
 - Bug form as a YAML issue form with required environment/diagnostics fields (especially if the project has a `report`/`doctor` command).
 - A "before you open a large PR, open an issue" line plus a short "PRs I will close" list in CONTRIBUTING.
-- Trademark/attribution line for upstream projects the name leans on (e.g. WireGuard®).
+- Trademark/attribution line for upstream projects the name leans on (e.g. a project whose pitch leans on Linux®, Docker®, or another registered mark).
 - A "main may be unstable, use releases" note if `main` is actually unstable.
 
 ## Things that are almost never worth borrowing for a small team

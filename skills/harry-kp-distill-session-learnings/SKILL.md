@@ -81,4 +81,4 @@ Harvested candidates: 7. Survived the filter: 3.
 - → skill `harry-kp-benchmark-repo-presentation`, Step 2: "`web_fetch` only opens URLs seen earlier in the conversation; search first or clone instead."
 - → CLAUDE.md, "Working with the maintainer": "When asked for a skill, default to a general, reusable one unless told it's project-specific."
 
-Rejected: the borrow list itself (task outcome), "Vortix README is 218 lines" (derivable, will change), "user likes NetBird" (one-off context).
+Rejected: the borrow list itself (task outcome), "the user's README is 218 lines" (derivable, will change), "user admires the reference project" (one-off context).
