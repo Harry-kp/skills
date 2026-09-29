@@ -14,6 +14,7 @@ Two or three sentences a manager can read: overall state, the worst thing found,
 | P1 | | | |
 | P2 | | | |
 | P3 | | | |
+| UX/UI issues | | | |
 | Missing features | | | |
 
 ## 2. Coverage
@@ -44,7 +45,19 @@ Ordered by severity. Each one self-contained.
 - **Root cause:** file:line, one sentence
 - **Status:** FIXED in `abc1234` — re-driven, after-shot `qa/screens/BUG-001-after.png` / OPEN — reason
 
-## 4. Missing features
+## 4. UX/UI issues
+
+It works, but users struggle. Each names the principle broken.
+
+### UX-001 · P2 · [one-line title]
+- **Where:** screen / workflow
+- **What a user experiences:** …
+- **Principle:** e.g. consistency (Nielsen #4), contrast 2.8:1 < 4.5:1, 7 steps vs 3 in comparable apps
+- **Evidence:** `qa/screens/…png`
+- **Fix:** what changed (token / component / flow), before → after step count
+- **Status:** FIXED in `abc1234` — before/after shots / PROPOSED — needs decision (brand, removal, workflow restructure)
+
+## 5. Missing features
 
 Things a reasonable user expected here and didn't find.
 
@@ -55,22 +68,22 @@ Things a reasonable user expected here and didn't find.
 - **Proposal:** one paragraph. Effort: S / M / L
 - **Status:** IMPLEMENTED in `abc1234` / PROPOSED — needs decision
 
-## 5. First-time-user friction
+## 6. First-time-user friction
 
 Not bugs, but moments a new user would stall. Short bullets with screenshot refs. Include the "time to first success" you observed.
 
-## 6. What works well
+## 7. What works well
 
 Brief. Things the team should not touch.
 
-## 7. Fixes made
+## 8. Fixes made
 
 Commit list with finding IDs. Tests added. Anything the fix changed that a user would notice.
 
-## 8. Not covered / needs a human
+## 9. Not covered / needs a human
 
 Concrete list with why (no emulator, no creds, native dialogs, real payment, real email deliverability, etc.) and the exact steps a human should run.
 
-## 9. Recommended next steps
+## 10. Recommended next steps
 
 Top 3–5, in order.

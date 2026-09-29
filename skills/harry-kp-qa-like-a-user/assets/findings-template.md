@@ -16,6 +16,15 @@ notes:
 
 ---
 
+UX-001 | P2 | OPEN
+where: Checkout
+experience: primary "Pay" is outlined grey, "Cancel" is solid brand colour — users hit Cancel
+principle: visual hierarchy / Fitts's law; 1 primary action per screen
+evidence: qa/screens/044-checkout.png
+notes: fix in Button variant tokens, not just this screen
+
+---
+
 MISS-001 | S | PROPOSED
 where: Projects list
 expected: sort by name/date; list has 40 items and no sort/filter
