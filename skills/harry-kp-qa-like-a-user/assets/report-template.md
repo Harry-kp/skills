@@ -34,12 +34,12 @@ Workflows run end to end: list them.
 
 Ordered by severity. Each one self-contained.
 
-### BUG-001 · P0 · [one-line title]
+### BUG-001 · P0 · logic · [one-line title]
 - **Where:** screen / route / command
 - **Repro (from clean state):**
   1. …
   2. …
-- **Expected:** …
+- **Expected:** … (for `logic` bugs, the calculation that gives the right value)
 - **Actual:** …
 - **Evidence:** `qa/screens/017-…png`, console log excerpt
 - **Root cause:** file:line, one sentence

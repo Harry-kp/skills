@@ -6,7 +6,7 @@ Reset command: `…`   Driver: `…`   Started: YYYY-MM-DD HH:MM
 
 ---
 
-BUG-001 | P1 | OPEN
+BUG-001 | P1 | functional | OPEN
 where: Settings > Profile
 repro: 1) login as member 2) change display name 3) click Save 4) reload
 expected: new name shown

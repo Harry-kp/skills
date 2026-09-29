@@ -40,7 +40,7 @@ Re-run any of these to update.
 | [`harry-kp-agent-ready-repo`](skills/harry-kp-agent-ready-repo/SKILL.md) | Audit and simplify any repo (flatten, dedupe to one source of truth, delete dead code) with an approval gate, then write a verified CLAUDE.md / AGENTS.md so agents can work in it autonomously |
 | [`harry-kp-benchmark-repo-presentation`](skills/harry-kp-benchmark-repo-presentation/SKILL.md) | Compare your repo's README, docs, install story and community files against a project you admire; returns a short borrow list filtered by upkeep cost for a small team, plus what to skip |
 | [`harry-kp-distill-session-learnings`](skills/harry-kp-distill-session-learnings/SKILL.md) | At the end of a session, keep only the durable, non-obvious lessons and write them into the right place (CLAUDE.md / AGENTS.md, a skill, or memory), pruning stale lines while there |
-| [`harry-kp-qa-like-a-user`](skills/harry-kp-qa-like-a-user/SKILL.md) | Drive your app the way a real user would (web, TUI, CLI, desktop, mobile, API): every screen, workflow and edge case, then a bug, UX/UI and missing-feature report with evidence (confusing theme, over-complex workflows, needless UI), and fixes on request |
+| [`harry-kp-qa-like-a-user`](skills/harry-kp-qa-like-a-user/SKILL.md) | Drive your app the way a real user would (web, TUI, CLI, desktop, mobile, API): every screen, workflow and edge case, then a functional, logic, UX/UI and missing-feature report with evidence (confusing theme, over-complex workflows, needless UI), and fixes on request |
 
 ## Adding a skill
 

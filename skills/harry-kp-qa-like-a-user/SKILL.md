@@ -15,7 +15,7 @@ The failure mode this skill exists to prevent: reading the source, guessing what
 1. Recon      → what is this thing, how do I run it, how do I drive it
 2. Setup      → run it, pick a driver, get creds, snapshot a clean state
 3. Explore    → walk every screen as a FIRST-TIME user, then as a returning user
-4. Workflows  → run every end-to-end job a user would do, start to finish
+4. Workflows  → run every end-to-end job a user would do, start to finish, and check the result is correct
 5. Break it   → edge cases, bad input, interruptions, resize, offline, back button
 6. Audit      → bug, UX/UI, and missing-feature lists, each with repro and severity
 7. Fix        → fix in severity order, re-drive the exact repro to confirm
@@ -83,6 +83,10 @@ Always include these workflows if they exist at all:
 - Help, docs links, support contact, keyboard-shortcut cheatsheet, `--help` / `?` key
 - Multi-user / real-time if applicable (two sessions at once)
 
+### Check the result is correct, not just that it ran
+
+A workflow that completes can still be wrong. For each one, work out the expected result yourself first (by hand, a quick script, the raw API response, the DB row), then compare with what the app shows: totals and derived numbers, dates and timezones, status transitions, business rules at their boundaries, filters and search results, and the same fact shown on two screens. Run `references/logic-checklist.md`. Log mismatches as `BUG-NNN` tagged `logic`, with the expected calculation written out.
+
 ## Step 5 — Break it
 
 Per screen and per form, run `references/break-it-checklist.md`. Highlights: empty submit, whitespace-only, 10 000 characters, emoji and RTL text, `<script>` and SQL-ish strings, negative numbers, past dates, double-click submit, browser back mid-flow, refresh mid-flow, resize to 320px / 40x10 terminal, slow network, offline, expired session mid-action, concurrent edits, deep link to a deleted item.
@@ -91,7 +95,10 @@ Per screen and per form, run `references/break-it-checklist.md`. Highlights: emp
 
 First run `references/ux-ui-checklist.md` over every screen and workflow you drove. Then sort findings into three separate lists. Don't merge them; they're fixed differently.
 
-**Bug** = the product does something other than what a reasonable user expects, or something the product itself promised (label, docs, tooltip). Includes visual bugs, dead controls, wrong data, crashes, confusing copy, inaccessible controls, and broken keyboard nav.
+**Bug** = the product does something other than what a reasonable user expects, or something the product itself promised (label, docs, tooltip). Tag each one:
+- `functional` — a feature doesn't do its job: dead controls, crashes, actions that don't save, settings that don't take effect, broken keyboard nav, inaccessible controls.
+- `logic` — it runs but the result is wrong: bad calculations, wrong totals or derived values, timezone/date shifts, illegal state transitions, rules not applied at boundaries, filters returning the wrong items, two screens disagreeing, upstream errors shown as real values.
+- `visual` — rendering is broken: overlap, cut-off text, missing images, broken layout at a size.
 
 **UX/UI issue** = it works, but a user struggles: the theme or colours confuse (nothing reads as clickable, low contrast, status colours clash with the brand), the layout has no clear hierarchy, the same thing looks or is named differently across screens, a workflow takes more steps or decisions than it should, or an element serves no workflow and just adds noise. Each one names the principle it breaks (heuristic, contrast ratio, step count) — taste alone is not a finding.
 
@@ -143,6 +150,7 @@ Use `assets/report-template.md`. Fill every section. The report is for someone w
 - `references/first-time-user-checklist.md` — the screen-by-screen new-user audit.
 - `references/break-it-checklist.md` — edge-case inputs and interruptions per form/screen.
 - `references/ux-ui-checklist.md` — visual design and flow checks, with the principles to cite.
+- `references/logic-checklist.md` — correctness checks: calculations, dates, state rules, data integrity, integrations.
 - `assets/report-template.md` — the final report skeleton.
 - `assets/findings-template.md` — the running findings log format.
 - `scripts/tui_drive.sh` — helper for tmux-driven TUI sessions (start, send keys, capture, diff).
