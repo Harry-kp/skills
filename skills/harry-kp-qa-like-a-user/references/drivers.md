@@ -96,6 +96,11 @@ tmux resize-window -t $S -x 80 -y 24 ; sleep 0.5 ; tmux capture-pane -t $S -p > 
 tmux capture-pane -t $S -p -e > qa/screens/013-with-escapes.txt
 ```
 
+Drive it reliably:
+- **Before typing text, capture and check the field is really open.** On a TUI dashboard, stray letters are commands (`b`, `d`, `q`…): typing into a closed box runs them.
+- **Wait on a unique marker, not on fixed sleeps.** For a shell pane, send `cmd; echo END$RANDOM` and poll `capture-pane -J` for that exact line (`grep -qx`); matching text that also appears in the typed command or old scrollback gives false results.
+- **Let the user watch.** Run in a session they can attach to, and tell them before each step that needs them (a sign-in, a password).
+
 TUI-specific things to check:
 - `?`, `h`, `F1`, `:help` — is there a help screen and does it list *every* binding actually implemented? Cross-check against the keymap in code afterward.
 - Every binding in help actually does something; every action in the UI has a discoverable binding.

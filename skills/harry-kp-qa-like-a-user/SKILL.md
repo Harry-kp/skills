@@ -49,18 +49,26 @@ Read only the matching section of `references/drivers.md`.
 1. **Run it.** Use the documented dev command. If it doesn't start cleanly from a fresh clone, **that's finding #1** (severity: blocker for new devs, note it and move on).
 2. **Get credentials.** The user said they'd help — ask *once*, in one message, for everything you foresee needing: test accounts (at least two roles if roles exist), payment sandbox, OAuth test app, seed data, email inbox for verification links. Don't dribble requests over ten turns.
 3. **Snapshot clean state** so you can replay the first-time-user path repeatedly: fresh DB / cleared localStorage / new tmux session / fresh emulator. Write down the reset command.
+   Clean the *product's* state only. Run it on the user's **real machine**, with what is already there: a vendor's own app installed, company device management, existing accounts, many OS groups, a VPN. A clean lab hides the bugs real users hit first. Record that state before you start and restore it at the end.
 4. **Keep `qa/` out of git**: append `qa/` to `.git/info/exclude` (local-only, doesn't touch `.gitignore`). It will hold screenshots, video, and `qa/auth.json` with live session cookies — never commit those. Only `qa/REPORT.md` is shared, and only if the user wants it in the repo.
 5. **Set up evidence capture**: a `qa/screens/` folder, screenshot or `capture-pane` after *every* action, named `NNN-what-i-did.png|txt`. Evidence is what turns "I think the button is broken" into a fixable bug.
 
 ## Step 3 — Explore as a first-time user
 
-Reset to clean state. Now pretend you have never seen this product and nobody told you what it does. Go through `references/first-time-user-checklist.md` top to bottom. The key questions at every screen:
+Reset to clean state. Now pretend you have never seen this product and nobody told you what it does.
+
+**First write down what this user knows before they start**, in their words, e.g. "my company uses NetBird; I sign in with my work email". That list is all you may use. You know the code, the docs and the internals; the user does not. Every value the product asks for (a path, a URL, a keyword, a format) must come from that list or from the screen itself. If you typed something because *you* knew it, that is a finding, even if it worked. Do this for each kind of user (first-timer, someone moving from the vendor's app, returning user, script/CLI user), not only the one the developer had in mind.
+
+Go through `references/first-time-user-checklist.md` top to bottom. The key questions at every screen:
 
 - **Do I know where I am?** (title, breadcrumb, active tab)
 - **Do I know what I can do here?** (are the actions visible and labeled?)
 - **Do I know what just happened?** (feedback after every action: toast, state change, cursor move)
 - **Can I get back?** (back/escape/cancel always work and never lose my data silently)
-- **Is anything here that I can't understand without reading the docs?**
+- **Is anything here that I can't understand without reading the docs?** Read every word on screen as this user: an internal path, flag, file format or vendor term they wouldn't know is a finding.
+- **Can I copy what I see and act on what it tells me?** Select and copy a code, a link or an error; open a link. A link the user must retype is a broken step.
+
+**Follow every hand-off to the outside world for real**: a browser that should open, an email or code that should arrive, a sign-in page, an OS prompt, another app that must be stopped. Check it actually happens on this machine, with the user doing only the step that needs them (typing a password, approving a sign-in). Reading "the browser opened" in the UI is not evidence that it did. Afterwards, compare the flow with the vendor's or platform's own onboarding for the same job: users expect the same steps and words.
 
 Then walk the **inventory**: every route, screen, menu item, tab, button, link, icon, keyboard shortcut, context menu, settings toggle, and empty state. Tick each off against the coverage checklist from recon. For each control: tap it, screenshot, note what happened, note what you *expected* to happen. Untapped controls = untested controls.
 
